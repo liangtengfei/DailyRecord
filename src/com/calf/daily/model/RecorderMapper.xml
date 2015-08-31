@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.calf.daily.interf.RecorderMapper">
+	<resultMap id="BaseResultMap" type="com.calf.daily.model.Recorder">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+		<result column="USERPASS" property="userpass" jdbcType="VARCHAR" />
+		<result column="USERROLE" property="userrole" jdbcType="VARCHAR" />
+		<result column="USERCOMM" property="usercomm" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, USERNAME, USERPASS, USERROLE, USERCOMM
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from RECORDER
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from RECORDER
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.calf.daily.model.Recorder" keyProperty="gen_id">
+		<selectKey keyProperty="gen_id" order="BEFORE"
+			resultType="String">
+			select sys_guid() from dual
+		</selectKey>
+		insert into RECORDER (ID, USERNAME, USERPASS,
+		USERROLE, USERCOMM)
+		values (#{gen_id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{userpass,jdbcType=VARCHAR},
+		#{userrole,jdbcType=VARCHAR}, #{usercomm,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.calf.daily.model.Recorder" keyProperty="gen_id">
+		<selectKey keyProperty="gen_id" order="BEFORE"
+			resultType="String">
+			select sys_guid() from dual
+		</selectKey>
+		insert into RECORDER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="userpass != null">
+				USERPASS,
+			</if>
+			<if test="userrole != null">
+				USERROLE,
+			</if>
+			<if test="usercomm != null">
+				USERCOMM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{gen_id,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				#{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="userrole != null">
+				#{userrole,jdbcType=VARCHAR},
+			</if>
+			<if test="usercomm != null">
+				#{usercomm,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<insert id="insertRecorderUuid" parameterType="com.calf.daily.model.Recorder">
+		<selectKey keyProperty="gen_id" order="BEFORE"
+			resultType="String">
+			select sys_guid() from dual
+		</selectKey>
+		insert into RECORDER (ID, USERNAME, USERPASS,
+		USERROLE, USERCOMM)
+		values (#{gen_id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{userpass,jdbcType=VARCHAR},
+		#{userrole,jdbcType=VARCHAR}, #{usercomm,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.calf.daily.model.Recorder">
+		update RECORDER
+		<set>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				USERPASS = #{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="userrole != null">
+				USERROLE = #{userrole,jdbcType=VARCHAR},
+			</if>
+			<if test="usercomm != null">
+				USERCOMM = #{usercomm,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.calf.daily.model.Recorder">
+		update RECORDER
+		set USERNAME = #{username,jdbcType=VARCHAR},
+		USERPASS = #{userpass,jdbcType=VARCHAR},
+		USERROLE = #{userrole,jdbcType=VARCHAR},
+		USERCOMM = #{usercomm,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
