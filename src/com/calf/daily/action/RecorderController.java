@@ -1,27 +1,38 @@
 package com.calf.daily.action;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.calf.daily.interf.RecorderMapper;
 import com.calf.daily.model.Recorder;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user.sm")
 public class RecorderController {
-	private Recorder record;
+	private RecorderMapper recordService;
 	
-	public String getOneByNameAndpass(String name,String pass){
-		return "";
+	@RequestMapping(value="/")
+	public String toIndex(){
+		return "redirect:index.html";
 	}
-	public String userLogin(){
-		return "";
+	@RequestMapping(params="m=login", method = RequestMethod.POST)
+	public String userLogin(Recorder user){
+		Recorder r=recordService.selectByNamePass(user);
+		if(r==null){
+			return "redirect:index.html";
+		}
+		return "index";
 	}
 	
 	
-	public Recorder getRecord() {
-		return record;
+	public RecorderMapper getRecordService() {
+		return recordService;
 	}
-	public void setRecord(Recorder record) {
-		this.record = record;
+	@Resource
+	public void setRecordService(RecorderMapper recordService) {
+		this.recordService = recordService;
 	}
 }

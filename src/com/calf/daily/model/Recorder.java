@@ -2,6 +2,9 @@ package com.calf.daily.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Recorder implements Serializable{
 
 	private static final long serialVersionUID = 1L;

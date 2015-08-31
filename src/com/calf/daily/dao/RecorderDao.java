@@ -1,9 +1,10 @@
-package com.calf.daily.interf;
+package com.calf.daily.dao;
+
 
 import com.calf.daily.model.Recorder;
 
-public interface RecorderMapper {
-    int deleteByPrimaryKey(String id);
+public interface RecorderDao {
+	int deleteByPrimaryKey(String id);
 
     int insert(Recorder record);
 
