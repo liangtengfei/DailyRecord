@@ -23,7 +23,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from RECORDER
-		where USERNAME = #{username,jdbcType=VARCHAR},
+		where USERNAME = #{username,jdbcType=VARCHAR}
 		and USERPASS = #{userpass,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
