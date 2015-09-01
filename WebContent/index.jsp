@@ -80,9 +80,8 @@
 </div><!-- /.navbar -->
 <div class="container marketing">
 	<div class="jumbotron">
-		<h1>Hello, world!</h1>
-		<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron 
-		and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+		<h1>你的面包屑</h1>
+		<p>你每天都在干什么？你明天计划干什么？你想到的、你看到的、你喜欢的、你想记住的、你想了解的，都可以发布在这里，我们会向你展示有所你想完成的。</p>
 		<p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
 	</div><!-- /.jumbotron -->
 	
