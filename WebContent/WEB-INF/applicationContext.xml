@@ -55,10 +55,10 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           p:dataSource-ref="jdbcDataSource"/>
 	
-	<bean id="recorderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<!-- <bean id="recorderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.calf.daily.interf.RecorderMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
+	</bean> -->
 	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> <property 
 		name="baseMapper" value="com.calf.daily.interf"></property> <property name="markerInterface" 
 		value="com.calf.daily.interf.SqlMapper"></property> </bean> -->
