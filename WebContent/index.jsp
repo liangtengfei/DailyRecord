@@ -73,7 +73,7 @@
           </li>
        </ul>
        <div>
-       	<a href="#"><span class="badge pull-right">退出</span></a>
+       	<a href="#"><span class="badge pull-right">退出${sessionScope.username}</span></a>
        </div>
      </div><!-- /.nav-collapse -->
    </div><!-- /.container -->

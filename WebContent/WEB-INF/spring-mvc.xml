@@ -19,7 +19,8 @@
     <mvc:annotation-driven />
 
     <mvc:interceptors>
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    	<bean class="com.calf.daily.auth.AuthInterceptor"/>
     </mvc:interceptors>
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
