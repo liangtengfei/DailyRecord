@@ -12,24 +12,78 @@
 <link href="http://bootstrap.evget.com/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="resource/css/signin.css" rel="stylesheet">
 <link href="resource/css/sticky-footer.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="resource/js/json2.js"></script>
 
 </head>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#registmsg").hide();
+	$("#regsucc").hide();
+	function Recorder(username,userpass,usercomm){
+	 		this.username=username;
+	 		this.userpass=userpass;
+	 		this.usercomm=usercomm;
+	}
+	function delayURL(url,count) {//定时跳转
+		window.setTimeout(function(){
+			count--;
+			if(count>0){
+				document.getElementById("time").innerHTML = "<font color=red>"+count+"</font>";
+				delayURL(url,count);
+			}else{
+				location.href = url;
+			}
+		}, 1000);
+	}
+	$("#registbtn").click(function() {
+		var name=$("#username").val();
+		var pass=$("#userpass").val();
+		var comm=$("#usercomm").val();
+	    var userinfoRef = new Recorder(name, pass, comm);
+	    var jsonStringRef = JSON.stringify(userinfoRef);
+	   $.ajax({
+	        type: "POST",
+	        contentType: "application/json;charset=UTF-8",
+	        url: "user?m=regist",
+	        data: jsonStringRef,
+	        //async: false,
+		    dataType:"json",
+		    success : function(r) {
+		    	$("#registmsg").hide();
+				$("#regsucc").show();
+		    	delayURL("index.jsp",5);
+	        },
+	        error : function(r) {
+	        	$("#registmsg").show();
+	        },
+	        //complete:function(){location.href ="index.jsp"}
+	    });
+	   return false;//禁止跳转
+	});
+});
+</script>
 <body>
 <div class="container">
-  <form class="form-signup" role="form" action="/user?m=regist" method="post">
+  <form class="form-signup" role="form" id="registform" method="post">
+  	<div class="alert alert-success" id="regsucc">注册成功<span id="time"><font color="red">5</font></span>秒后跳转首页</div>
+  	<div class="alert alert-danger alert-dismissable" id="registmsg">
+  		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  		<strong>注册失败</strong>请检查所填内容是否符合要求
+	</div>
     <h2 class="form-signup-heading">帐号注册</h2>
     
     <label class="control-label">邮箱</label>
-    <input name="username" type="email" class="form-control" placeholder="邮箱/用户名" required autofocus>
+    <input id="username" name="username" type="email" class="form-control" placeholder="邮箱/用户名" required autofocus>
     
     <label class="control-label">密码</label>
-    <input name="userpass" type="password" class="form-control" required>
+    <input id="userpass" name="userpass" type="password" class="form-control" required>
     
     <label class="control-label">个人说明</label>
-    <textarea name="usercomm" class="form-control" rows="5" placeholder="每条一行" required></textarea>
+    <textarea id="usercomm" name="usercomm" class="form-control" rows="5" placeholder="每条一行" required></textarea>
     
-    <button class="btn btn-lg btn-primary btn-block" type="submit">免费注册</button>
+    <button class="btn btn-lg btn-primary btn-block" id="registbtn">免费注册</button>
     
     <a href="login.html" class="tipfont">登录帐号</a>
   </form>
@@ -40,7 +94,5 @@
    <p class="text-muted">©2015 DailyR</p>
 </div>
 </div>
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </body>
 </html>

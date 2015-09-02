@@ -19,7 +19,17 @@ public class Recorder implements Serializable{
 
     private String usercomm;
 
-    public String getId() {
+    public Recorder() {
+		super();
+	}
+
+	public Recorder(String username, String userpass) {
+		super();
+		this.username = username;
+		this.userpass = userpass;
+	}
+
+	public String getId() {
         return id;
     }
 

@@ -5,33 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
     <title>生活的意义--你每天都在干什么？你明天计划干什么？登录帐号</title>
     <link href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="resource/css/signin.css" rel="stylesheet">
     <link href="resource/css/sticky-footer.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="resource/js/json2.js"></script>
   </head>
+	<script type="text/javascript">
+	/*
+	 * 后台java实体一定一定要有无参构造函数
+	 */
+	$(document).ready(function(){
+		$("#logmsg").hide();
+		function Recorder(username,userpass){
+		 		this.username=username;
+		 		this.userpass=userpass;
+		}
+		$("#logBtn").click(function() {
+			var name=$("#username").val();
+			var pass=$("#userpass").val();
+		    var userinfoRef = new Recorder(name, pass);
+		    var jsonStringRef = JSON.stringify(userinfoRef);
+		   $.ajax({
+		        type: "POST",
+		        contentType: "application/json;charset=UTF-8",
+		        url: "user?m=login",
+		        data: jsonStringRef,
+		        //async: false,
+			    dataType:"json",
+			    success : function(r) {
+			    	location.href ="index.jsp";
+			    	$("#logmsg").show();
+			    	$("#logmsg a").html("登录成功");
+		        },
+		        error : function(r) {
+		        	$("#logmsg").show();
+		        	$("#logmsg a").html("登录失败,欢迎查看使用须知");
+		        },
+		        //complete:function(){location.href ="index.jsp"}
+		    });
+		   return false;//禁止跳转
+		});
+	});
+	</script>
   <body>
     <div class="container">
-      <form class="form-signin" role="form" action="/user?m=login" method="post">
+      <form class="form-signin" role="form" method="post" id="logform">
+      	<div class="alert alert-danger" id="logmsg">
+  			<a href="regist.html" class="alert-link"></a>
+		</div>
         <h2 class="form-signin-heading">請先登錄</h2>
-        <input name="username" type="email" class="form-control" placeholder="邮箱/用户名" required autofocus>
+        <input id="username" name="username" type="email" class="form-control" placeholder="邮箱/用户名" required autofocus>
         <a href="user.sm?m=getpass" class="tipfont">忘记密码了吗？</a>
-        <input name="userpass" type="password" class="form-control" required>
+        <input id="userpass" name="userpass" type="password" class="form-control" required>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> <span>自動登錄</span>
         </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登  錄</button>
+        <button class="btn btn-lg btn-primary btn-block" id="logBtn">登  錄</button>
         <a href="regist.html" class="tipfont">免费注册帐号</a>
       </form>
-    </div> <!-- /containername="username"  name="userpass" -->
+    </div> <!-- /containername="username"  name="userpass"   -->
     <div id="footer">
 		<div class="container">
 		   <p class="text-muted">©2015 DailyR</p>
 		</div>
     </div>
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   </body>
 </html>

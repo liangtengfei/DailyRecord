@@ -30,20 +30,20 @@
 		delete from RECORDER
 		where ID = #{id,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" parameterType="com.calf.daily.model.Recorder" keyProperty="gen_id">
-		<selectKey keyProperty="gen_id" order="BEFORE"
+	<insert id="insert" parameterType="com.calf.daily.model.Recorder" keyProperty="id">
+		<selectKey keyProperty="id" order="BEFORE"
 			resultType="String">
 			select sys_guid() from dual
 		</selectKey>
 		insert into RECORDER (ID, USERNAME, USERPASS,
 		USERROLE, USERCOMM)
-		values (#{gen_id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
 		#{userpass,jdbcType=VARCHAR},
 		#{userrole,jdbcType=VARCHAR}, #{usercomm,jdbcType=VARCHAR})
 	</insert>
 
-	<insert id="insertSelective" parameterType="com.calf.daily.model.Recorder" keyProperty="gen_id">
-		<selectKey keyProperty="gen_id" order="BEFORE"
+	<insert id="insertSelective" parameterType="com.calf.daily.model.Recorder" keyProperty="id">
+		<selectKey keyProperty="id" order="BEFORE"
 			resultType="String">
 			select sys_guid() from dual
 		</selectKey>
@@ -67,7 +67,7 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
-				#{gen_id,jdbcType=VARCHAR},
+				#{id,jdbcType=VARCHAR},
 			</if>
 			<if test="username != null">
 				#{username,jdbcType=VARCHAR},
@@ -84,13 +84,13 @@
 		</trim>
 	</insert>
 	<insert id="insertRecorderUuid" parameterType="com.calf.daily.model.Recorder">
-		<selectKey keyProperty="gen_id" order="BEFORE"
+		<selectKey keyProperty="id" order="BEFORE"
 			resultType="String">
 			select sys_guid() from dual
 		</selectKey>
 		insert into RECORDER (ID, USERNAME, USERPASS,
 		USERROLE, USERCOMM)
-		values (#{gen_id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
 		#{userpass,jdbcType=VARCHAR},
 		#{userrole,jdbcType=VARCHAR}, #{usercomm,jdbcType=VARCHAR})
 	</insert>

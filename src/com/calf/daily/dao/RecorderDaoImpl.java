@@ -26,11 +26,12 @@ public class RecorderDaoImpl implements RecorderDao {
 
 	@Override
 	public int insert(Recorder record) {
-		return 0;
+		return sqlSessionTemplate.insert("insert",record);
 	}
 
 	@Override
 	public int insertSelective(Recorder record) {
+		//return sqlSessionTemplate.insert("insertSelective", record);
 		return 0;
 	}
 
