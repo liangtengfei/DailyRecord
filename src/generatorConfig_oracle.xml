@@ -45,11 +45,15 @@
     </javaClientGenerator>
     
     <!-- 要对那些数据表进行生成操作，必须要有一个.schema="orcl"  -->
-    <table tableName="recorder" domainObjectName="Recorder"
+    <table tableName="RECORDS" domainObjectName="Records"
         enableCountByExample="false" enableUpdateByExample="false"
         enableDeleteByExample="false" enableSelectByExample="false"
         selectByExampleQueryId="false">
     </table>
-
+	<table tableName="RECORDSGROUP" domainObjectName="RecordsGroup"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">
+    </table>
   </context>
 </generatorConfiguration>

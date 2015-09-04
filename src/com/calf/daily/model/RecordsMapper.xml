@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.calf.daily.interf.RecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.calf.daily.model.Records" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RECORDLABEL" property="recordlabel" jdbcType="VARCHAR" />
+    <result column="RECORDTITLE" property="recordtitle" jdbcType="VARCHAR" />
+    <result column="RECORDCONTENT" property="recordcontent" jdbcType="VARCHAR" />
+    <result column="RECORDSMS" property="recordsms" jdbcType="VARCHAR" />
+    <result column="RECORDVISIBLE" property="recordvisible" jdbcType="VARCHAR" />
+    <result column="RECORDGROUP" property="recordgroup" jdbcType="VARCHAR" />
+    <result column="RECORDIMAGES" property="recordimages" jdbcType="VARCHAR" />
+    <result column="RECORDTIME" property="recordtime" jdbcType="TIMESTAMP" />
+    <result column="RECORDLASTTIME" property="recordlasttime" jdbcType="TIMESTAMP" />
+    <result column="RECORDUSER" property="recorduser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RECORDLABEL, RECORDTITLE, RECORDCONTENT, RECORDSMS, RECORDVISIBLE, RECORDGROUP, 
+    RECORDIMAGES, RECORDTIME, RECORDLASTTIME, RECORDUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RECORDS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RECORDS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.calf.daily.model.Records" >
+    insert into RECORDS (ID, RECORDLABEL, RECORDTITLE, 
+      RECORDCONTENT, RECORDSMS, RECORDVISIBLE, 
+      RECORDGROUP, RECORDIMAGES, RECORDTIME, 
+      RECORDLASTTIME, RECORDUSER)
+    values (#{id,jdbcType=VARCHAR}, #{recordlabel,jdbcType=VARCHAR}, #{recordtitle,jdbcType=VARCHAR}, 
+      #{recordcontent,jdbcType=VARCHAR}, #{recordsms,jdbcType=VARCHAR}, #{recordvisible,jdbcType=VARCHAR}, 
+      #{recordgroup,jdbcType=VARCHAR}, #{recordimages,jdbcType=VARCHAR}, #{recordtime,jdbcType=TIMESTAMP}, 
+      #{recordlasttime,jdbcType=TIMESTAMP}, #{recorduser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.calf.daily.model.Records" >
+    insert into RECORDS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="recordlabel != null" >
+        RECORDLABEL,
+      </if>
+      <if test="recordtitle != null" >
+        RECORDTITLE,
+      </if>
+      <if test="recordcontent != null" >
+        RECORDCONTENT,
+      </if>
+      <if test="recordsms != null" >
+        RECORDSMS,
+      </if>
+      <if test="recordvisible != null" >
+        RECORDVISIBLE,
+      </if>
+      <if test="recordgroup != null" >
+        RECORDGROUP,
+      </if>
+      <if test="recordimages != null" >
+        RECORDIMAGES,
+      </if>
+      <if test="recordtime != null" >
+        RECORDTIME,
+      </if>
+      <if test="recordlasttime != null" >
+        RECORDLASTTIME,
+      </if>
+      <if test="recorduser != null" >
+        RECORDUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="recordlabel != null" >
+        #{recordlabel,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtitle != null" >
+        #{recordtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recordcontent != null" >
+        #{recordcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsms != null" >
+        #{recordsms,jdbcType=VARCHAR},
+      </if>
+      <if test="recordvisible != null" >
+        #{recordvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="recordgroup != null" >
+        #{recordgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="recordimages != null" >
+        #{recordimages,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtime != null" >
+        #{recordtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordlasttime != null" >
+        #{recordlasttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recorduser != null" >
+        #{recorduser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.calf.daily.model.Records" >
+    update RECORDS
+    <set >
+      <if test="recordlabel != null" >
+        RECORDLABEL = #{recordlabel,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtitle != null" >
+        RECORDTITLE = #{recordtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recordcontent != null" >
+        RECORDCONTENT = #{recordcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsms != null" >
+        RECORDSMS = #{recordsms,jdbcType=VARCHAR},
+      </if>
+      <if test="recordvisible != null" >
+        RECORDVISIBLE = #{recordvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="recordgroup != null" >
+        RECORDGROUP = #{recordgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="recordimages != null" >
+        RECORDIMAGES = #{recordimages,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtime != null" >
+        RECORDTIME = #{recordtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordlasttime != null" >
+        RECORDLASTTIME = #{recordlasttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recorduser != null" >
+        RECORDUSER = #{recorduser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.calf.daily.model.Records" >
+    update RECORDS
+    set RECORDLABEL = #{recordlabel,jdbcType=VARCHAR},
+      RECORDTITLE = #{recordtitle,jdbcType=VARCHAR},
+      RECORDCONTENT = #{recordcontent,jdbcType=VARCHAR},
+      RECORDSMS = #{recordsms,jdbcType=VARCHAR},
+      RECORDVISIBLE = #{recordvisible,jdbcType=VARCHAR},
+      RECORDGROUP = #{recordgroup,jdbcType=VARCHAR},
+      RECORDIMAGES = #{recordimages,jdbcType=VARCHAR},
+      RECORDTIME = #{recordtime,jdbcType=TIMESTAMP},
+      RECORDLASTTIME = #{recordlasttime,jdbcType=TIMESTAMP},
+      RECORDUSER = #{recorduser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

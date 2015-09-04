@@ -29,7 +29,7 @@
 #footer {
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
+  /* Set the fixed height of the footer here   navbar-inverse*/
   height: 60px;
   background-color: #f5f5f5;
 }
@@ -40,7 +40,7 @@
 </style>
 </head>
 <body role="document">
-<div class="navbar navbar-static-top navbar-inverse" role="navigation">
+<div class="navbar navbar-default navbar-inverse" role="navigation">
    <div class="container">
      <div class="navbar-header">
        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -55,7 +55,7 @@
      <div class="collapse navbar-collapse">
        <ul class="nav navbar-nav">
          <li class="active"><a href="/index?m=index">首页</a></li>
-         <li><a href="/photos?m=all">相册</a></li>
+         <li><a href="/photos?m=all"><span class="badge pull-right">42</span>相册</a></li>
          <li><a href="/records?m=types">分类</a></li>
          <li><a href="/records?m=getall">所有</a></li>
          <li class="dropdown">
@@ -72,13 +72,34 @@
             </ul>
           </li>
        </ul>
-       <div>
-       	<a href="#"><span class="badge pull-right">退出${sessionScope.username}</span></a>
-       </div>
+       <ul class="nav navbar-nav navbar-right">
+	       	<li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能 <b class="caret"></b></a>
+	        	<ul class="dropdown-menu">
+		          <li><a href="#">新增</a></li>
+		          <li><a href="#">查看全部</a></li>
+		          <li class="divider"></li>
+		          <li><a href="#">我的计划</a></li>
+	        	</ul>
+	      	</li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+       	<li class="dropdown">
+      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心 <b class="caret"></b></a>
+      		<ul class="dropdown-menu">
+	          <li><a href="#">退出登录</a></li>
+        	</ul>
+      	</li>
+       </ul>
      </div><!-- /.nav-collapse -->
    </div><!-- /.container -->
 </div><!-- /.navbar -->
 <div class="container marketing">
+	<ol class="breadcrumb">
+  	<li><a href="#">Home</a></li>
+  	<li><a href="#">Library</a></li>
+  	<li class="active">Data</li>
+	</ol>
 	<div class="jumbotron">
 		<h1>你的面包屑</h1>
 		<p>你每天都在干什么？你明天计划干什么？你想到的、你看到的、你喜欢的、你想记住的、你想了解的，都可以发布在这里，我们会向你展示有所你想完成的。</p>
@@ -141,6 +162,19 @@
         <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
       </div><!-- /.col-lg-3 -->
     </div><!-- /.row -->
+    <ul class="pager">
+     <li class="previous"><a href="#">&larr; Older</a></li>
+  	 <li class="next"><a href="#">Newer &rarr;</a></li>
+	</ul>
+	<ul class="pagination">
+  	  <li class="disabled"><span>&laquo;</span></li>
+  	  <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+  	  <li><a href="#">2</a></li>
+	  <li><a href="#">3</a></li>
+	  <li><a href="#">4</a></li>
+	  <li><a href="#">5</a></li>
+	  <li><a href="#">&raquo;</a></li>
+	</ul>
 </div>
 
 <div id="footer">

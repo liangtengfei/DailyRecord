@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.calf.daily.interf.RecordsGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.calf.daily.model.RecordsGroup" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="GROUPNAME" property="groupname" jdbcType="VARCHAR" />
+    <result column="GROUPVISIBLE" property="groupvisible" jdbcType="VARCHAR" />
+    <result column="GROUOWNER" property="grouowner" jdbcType="VARCHAR" />
+    <result column="GROUPTIME" property="grouptime" jdbcType="TIMESTAMP" />
+    <result column="GROUPDID" property="groupdid" jdbcType="VARCHAR" />
+    <result column="GROUPCOMM" property="groupcomm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GROUPNAME, GROUPVISIBLE, GROUOWNER, GROUPTIME, GROUPDID, GROUPCOMM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RECORDSGROUP
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RECORDSGROUP
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.calf.daily.model.RecordsGroup" >
+    insert into RECORDSGROUP (ID, GROUPNAME, GROUPVISIBLE, 
+      GROUOWNER, GROUPTIME, GROUPDID, 
+      GROUPCOMM)
+    values (#{id,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}, #{groupvisible,jdbcType=VARCHAR}, 
+      #{grouowner,jdbcType=VARCHAR}, #{grouptime,jdbcType=TIMESTAMP}, #{groupdid,jdbcType=VARCHAR}, 
+      #{groupcomm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.calf.daily.model.RecordsGroup" >
+    insert into RECORDSGROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="groupname != null" >
+        GROUPNAME,
+      </if>
+      <if test="groupvisible != null" >
+        GROUPVISIBLE,
+      </if>
+      <if test="grouowner != null" >
+        GROUOWNER,
+      </if>
+      <if test="grouptime != null" >
+        GROUPTIME,
+      </if>
+      <if test="groupdid != null" >
+        GROUPDID,
+      </if>
+      <if test="groupcomm != null" >
+        GROUPCOMM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupvisible != null" >
+        #{groupvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="grouowner != null" >
+        #{grouowner,jdbcType=VARCHAR},
+      </if>
+      <if test="grouptime != null" >
+        #{grouptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupdid != null" >
+        #{groupdid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcomm != null" >
+        #{groupcomm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.calf.daily.model.RecordsGroup" >
+    update RECORDSGROUP
+    <set >
+      <if test="groupname != null" >
+        GROUPNAME = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupvisible != null" >
+        GROUPVISIBLE = #{groupvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="grouowner != null" >
+        GROUOWNER = #{grouowner,jdbcType=VARCHAR},
+      </if>
+      <if test="grouptime != null" >
+        GROUPTIME = #{grouptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupdid != null" >
+        GROUPDID = #{groupdid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcomm != null" >
+        GROUPCOMM = #{groupcomm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.calf.daily.model.RecordsGroup" >
+    update RECORDSGROUP
+    set GROUPNAME = #{groupname,jdbcType=VARCHAR},
+      GROUPVISIBLE = #{groupvisible,jdbcType=VARCHAR},
+      GROUOWNER = #{grouowner,jdbcType=VARCHAR},
+      GROUPTIME = #{grouptime,jdbcType=TIMESTAMP},
+      GROUPDID = #{groupdid,jdbcType=VARCHAR},
+      GROUPCOMM = #{groupcomm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
