@@ -15,7 +15,7 @@ import com.calf.daily.interf.RecordsMapper;
 import com.calf.daily.model.Records;
 
 @Controller
-@RequestMapping("/records.htm")
+@RequestMapping("/records.shtml")
 public class RecordsController {
 	private RecordsMapper recordsService;
 	

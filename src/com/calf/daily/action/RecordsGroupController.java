@@ -13,7 +13,7 @@ import com.calf.daily.interf.RecordsGroupMapper;
 import com.calf.daily.model.RecordsGroup;
 
 @Controller
-@RequestMapping("/records.htm")
+@RequestMapping("/records.shtml")
 public class RecordsGroupController {
 	private RecordsGroupMapper recordsGroupService;
 

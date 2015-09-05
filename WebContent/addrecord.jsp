@@ -70,7 +70,7 @@ $(document).ready(function(){
 	   $.ajax({
 	        type: "POST",
 	        contentType: "application/json;charset=UTF-8",
-	        url: "/records.htm?m=add",
+	        url: "/records.shtml?m=add",
 	        data: jsonStringRef,
 	        //async: false,
 		    dataType:"json",

@@ -3,16 +3,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="resource/editor/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css"></link>
 <link href="http://bootstrap.evget.com/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="resource/js/json2.js"></script>
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
 $(function () {
     $.ajax({
-        url: 'records.htm?m=getgroup',
+        url: 'records.shtml?m=getgroup',
         contentType: "application/json;charset=UTF-8",
         type: 'GET',
         dataType: 'json',

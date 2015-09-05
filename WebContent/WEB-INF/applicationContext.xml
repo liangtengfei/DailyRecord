@@ -44,28 +44,27 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
-        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>  
-    </bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
 	<!-- spring与mybatis整合配置，扫描所有接口 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.calf.daily.model"
-          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.calf.daily.model" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
 
-    <!-- 对dataSource 数据源进行事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-          p:dataSource-ref="jdbcDataSource"/>
+	<!-- 对dataSource 数据源进行事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="jdbcDataSource" />
 	<!-- 切面配置 -->
-    <aop:aspectj-autoproxy />
-    <aop:config>
-		<aop:pointcut id="recordsServiceMethods" expression="execution(* com.calf.daily.dao.*.*(..))"/>
-		<!-- 在所有的pointcut中增加事务
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="userServiceMethods"/>
-         -->
+	<aop:aspectj-autoproxy />
+	<aop:config>
+		<aop:pointcut id="recordsServiceMethods"
+			expression="execution(* com.calf.daily.dao.*.*(..))" />
+		<!-- 在所有的pointcut中增加事务 <aop:advisor advice-ref="txAdvice" pointcut-ref="userServiceMethods"/> -->
 	</aop:config>
-	<!-- <bean id="recorderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.calf.daily.interf.RecorderMapper"></property>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean> -->
+	<!-- <bean id="recorderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+		<property name="mapperInterface" value="com.calf.daily.interf.RecorderMapper"></property> 
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property> </bean> -->
 	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> <property 
 		name="baseMapper" value="com.calf.daily.interf"></property> <property name="markerInterface" 
 		value="com.calf.daily.interf.SqlMapper"></property> </bean> -->

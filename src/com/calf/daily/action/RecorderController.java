@@ -14,7 +14,7 @@ import com.calf.daily.interf.RecorderMapper;
 import com.calf.daily.model.Recorder;
 
 @Controller
-@RequestMapping("/user.htm")
+@RequestMapping("/user.shtml")
 @SessionAttributes({"username","result"})
 public class RecorderController {
 	private RecorderMapper recorderService;
