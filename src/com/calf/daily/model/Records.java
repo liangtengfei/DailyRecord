@@ -38,13 +38,14 @@ public class Records implements Serializable{
 	}
 
 	public Records(String recordlabel, String recordtitle, String recordcontent, String recordgroup,
-			String recordimages) {
+			String recordimages, String recorduser) {
 		super();
 		this.recordlabel = recordlabel;
 		this.recordtitle = recordtitle;
 		this.recordcontent = recordcontent;
 		this.recordgroup = recordgroup;
 		this.recordimages = recordimages;
+		this.recorduser = recorduser;
 	}
 
 	public Records(String id, String recordlabel, String recordtitle, String recordcontent, String recordsms,

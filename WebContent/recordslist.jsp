@@ -12,7 +12,7 @@
 <script type="text/javascript">
 $(function () {
     $.ajax({
-        url: 'records.shtml?m=getgroup',
+        url: 'recordgroups.shtml?m=getgroups',
         contentType: "application/json;charset=UTF-8",
         type: 'GET',
         dataType: 'json',
@@ -36,20 +36,23 @@ $(function () {
         //var json = { "id": "10086", "uname": "zhangsan", "email": "zhangsan@qq.com" };
         //json = eval(json);
         //alert("===json:id=" + json.id + ",uname=" + json.uname + ",email=" + json.email);
-
+        alert(tt[""]);
         var json = eval(tt); //数组
-        $("#list").html(':'+json.groupname);
-        /* $.each(json, function (index, item) {
+        $.each(json, function (index, item) {
             //循环获取数据  
             var name = json[index].groupname;
             var idnumber = json[index].id;
+           // var el=$("#recordgroup");
+           // el.append('<option value="'+name+'">'+name+'</option>');
             $("#list").html($("#list").html() + "<br>" + name + " - " + idnumber + "<br/>");
-        }); */
+        });
     }
 });
 </script>
 <body>
-<div class="container" id="test">
+<div class="container" id="test1">
+</div>
+<div class="container" id="test2">
 </div>
 <ul id="list">
 </ul>

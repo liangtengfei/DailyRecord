@@ -29,7 +29,11 @@
     delete from RECORDSGROUP
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.calf.daily.model.RecordsGroup" >
+  <insert id="insertGroup" parameterType="com.calf.daily.model.RecordsGroup" >
+  	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDSGROUP (ID, GROUPNAME, GROUPVISIBLE, 
       GROUOWNER, GROUPTIME, GROUPDID, 
       GROUPCOMM)
@@ -37,7 +41,11 @@
       #{grouowner,jdbcType=VARCHAR}, #{grouptime,jdbcType=TIMESTAMP}, #{groupdid,jdbcType=VARCHAR}, 
       #{groupcomm,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.calf.daily.model.RecordsGroup" >
+  <insert id="insertSelectiveGroup" parameterType="com.calf.daily.model.RecordsGroup" >
+  	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDSGROUP
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

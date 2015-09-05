@@ -1,5 +1,6 @@
 package com.calf.daily.action;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -37,15 +38,10 @@ public class RecordsController {
 		return "recordsList";
 	}
 	@RequestMapping(params="m=add", method=RequestMethod.POST)
-	public @ResponseBody String addRecord(@RequestBody Records record){
+	public @ResponseBody int addRecord(@RequestBody Records record){
+		record.setRecordtime(new Date());
 		int result=recordsService.insert(record);
-		String id="";
-		if(result==0){
-			return "adderror";
-		}else{
-			id=record.getId();
-		}
-		return id;
+		return result;
 	}
 	
 	/*

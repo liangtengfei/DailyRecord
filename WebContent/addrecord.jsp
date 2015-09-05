@@ -32,32 +32,59 @@
 	$.ajax({
 		type: "GET",
         contentType: "application/json;charset=UTF-8",
-        url: "records.htm?m=getgroups",
+        url: "records.shtml?m=getgroups",
         data: jsonStringRef,
-        async: false,
+        //async: false,
 	    dataType:"json",
-	    success : function(groups) {
-	    	alert(groups);
-	    	groups=JSON.parse(groups);
+	    success : function(data) {
+	    	//var groups=JSON.parse(data);
+	    	//eval将字符串转成对象数组
+	    	var groups=eval(data);
 	    	var el=$("#recordgroup");
-	    	for(var group in groups){
-	    		el.append('<option value="'+group.name+'">'+group.name+'</option>');
-	    	}
+	    	$.each(groups, function(index, item){
+	    		var name=groups[index].groupname;
+	    		el.append('<option value="'+name+'">'+name+'</option>');
+	    	});
         },
         error : function(r) {
         	alert("数据加载出错");
         }
+        //beforeSend: LoadFunction, //加载执行方法  可以把进度条放在这里
 	});
 }); */
 $(document).ready(function(){
-	/*********加载分组******/
 	$("#regsucc").hide();
-	function Record(recordtitle,recordlabel,recordgroup,recordimages,recordcontent){
+	/*********加载分组******/
+	$.ajax({
+		type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        url: "recordgroups.shtml?m=getgroups",
+        //data: jsonStringRef,
+        //async: false,
+	    dataType:"json",
+	    success : function(data) {
+	    	//var groups=JSON.parse(data);
+	    	//eval将字符串转成对象数组
+	    	var groups=eval(data);
+	    	var el=$("#recordgroup");
+	    	$.each(groups, function(index, item){
+	    		var name=groups[index].groupname;
+	    		el.append('<option value="'+name+'">'+name+'</option>');
+	    	});
+        },
+        error : function(r) {
+        	alert("数据加载出错");
+        }
+        //beforeSend: LoadFunction, //加载执行方法  可以把进度条放在这里
+	});
+	/*********加载分组******/
+	function Record(recordtitle,recordlabel,recordgroup,recordimages,recordcontent,recorduser){
 		this.recordlabel = recordlabel;
 		this.recordtitle = recordtitle;
 		this.recordcontent = recordcontent;
 		this.recordgroup = recordgroup;
 		this.recordimages = recordimages;
+		this.recorduser = recorduser;
 	}
 	$("#addBtn").click(function() {
 		var title=$("#recordtitle").val();
@@ -65,19 +92,20 @@ $(document).ready(function(){
 		var content=$("#recordcontent").val();
 		var imag=$("#recordimages").val();
 		var group=$("#recordgroup").val();
-	    var infoRef = new Record(title, label, content, imag, group);
+		var name=$("#recorduser").val();
+	    var infoRef = new Record(title, label, content, imag, group,name);
 	    var jsonStringRef = JSON.stringify(infoRef);
 	   $.ajax({
 	        type: "POST",
 	        contentType: "application/json;charset=UTF-8",
-	        url: "/records.shtml?m=add",
+	        url: "records.shtml?m=add",
 	        data: jsonStringRef,
 	        //async: false,
 		    dataType:"json",
 		    success : function(r) {
 				$("#regsucc").show();
 	        },
-	        error : function(r) {
+	        error : function() {
 	        	$("#regsucc").show().html("添加失败");
 	        }
 	    });
@@ -153,6 +181,7 @@ $(document).ready(function(){
 	    
 	    <label class="control-label">标签</label>
 	    <input id=recordlabel name="recordlabel" type="text" class="form-control" required>
+	    <input id=recorduser name="recorduser" type="hidden" class="form-control" value="${sessionScope.username}" required>
 	    
 	    <label class="control-label">分组</label>
 	    <select class="span6 m-wrap form-control" name="recordgroup" id="recordgroup" required>

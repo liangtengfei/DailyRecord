@@ -27,17 +27,17 @@ public class ReocrdSysLogDaoImpl implements RecordSysLogDao {
 
 	@Override
 	public int insert(RecordSysLog record) {
-		return sqlSessionTemplate.insert("insert", record);
+		return sqlSessionTemplate.insert("insertSysLog", record);
 	}
 
 	@Override
 	public int insertSelective(RecordSysLog record) {
-		return sqlSessionTemplate.insert("insertSelective", record);
+		return sqlSessionTemplate.insert("insertSelectiveSysLog", record);
 	}
 
 	@Override
 	public RecordSysLog selectByPrimaryKey(String id) {
-		return sqlSessionTemplate.selectOne("selectByPrimaryKey", id);
+		return sqlSessionTemplate.selectOne("selectSysLogByPrimaryKey", id);
 	}
 
 	@Override

@@ -26,17 +26,17 @@ public class RecordsDaoImpl implements RecordsDao {
 
 	@Override
 	public int insert(Records record) {
-		return sqlSessionTemplate.insert("insert", record);
+		return sqlSessionTemplate.insert("insertRecord", record);
 	}
 
 	@Override
 	public int insertSelective(Records record) {
-		return sqlSessionTemplate.insert("insertSelective", record);
+		return sqlSessionTemplate.insert("insertSelectiveRecord", record);
 	}
 
 	@Override
 	public Records selectByPrimaryKey(String id) {
-		return sqlSessionTemplate.selectOne("selectByPrimaryKey", id);
+		return sqlSessionTemplate.selectOne("selectRecordByPrimaryKey", id);
 	}
 
 	@Override

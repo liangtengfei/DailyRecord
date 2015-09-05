@@ -10,7 +10,7 @@
   <sql id="Base_Column_List" >
     ID, CONTENT, LOGTIME, LOGMETHOD
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectSysLogByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from RECORDSYSLOG
@@ -26,13 +26,21 @@
     delete from RECORDSYSLOG
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.calf.daily.model.RecordSysLog" >
+  <insert id="insertSysLog" parameterType="com.calf.daily.model.RecordSysLog" >
+  	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDSYSLOG (ID, CONTENT, LOGTIME, 
       LOGMETHOD)
     values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{logtime,jdbcType=TIMESTAMP}, 
       #{logmethod,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.calf.daily.model.RecordSysLog" >
+  <insert id="insertSelectiveSysLog" parameterType="com.calf.daily.model.RecordSysLog" >
+  	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDSYSLOG
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

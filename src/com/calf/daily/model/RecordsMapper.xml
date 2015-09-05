@@ -18,7 +18,7 @@
     ID, RECORDLABEL, RECORDTITLE, RECORDCONTENT, RECORDSMS, RECORDVISIBLE, RECORDGROUP, 
     RECORDIMAGES, RECORDTIME, RECORDLASTTIME, RECORDUSER
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectRecordByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from RECORDS
@@ -40,7 +40,11 @@
     delete from RECORDS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.calf.daily.model.Records" >
+  <insert id="insertRecord" parameterType="com.calf.daily.model.Records" >
+	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDS (ID, RECORDLABEL, RECORDTITLE, 
       RECORDCONTENT, RECORDSMS, RECORDVISIBLE, 
       RECORDGROUP, RECORDIMAGES, RECORDTIME, 
@@ -50,7 +54,11 @@
       #{recordgroup,jdbcType=VARCHAR}, #{recordimages,jdbcType=VARCHAR}, #{recordtime,jdbcType=TIMESTAMP}, 
       #{recordlasttime,jdbcType=TIMESTAMP}, #{recorduser,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.calf.daily.model.Records" >
+  <insert id="insertSelectiveRecord" parameterType="com.calf.daily.model.Records" >
+	<selectKey keyProperty="id" order="BEFORE"
+		resultType="String">
+		select sys_guid() from dual
+	</selectKey>
     insert into RECORDS
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

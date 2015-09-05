@@ -26,12 +26,12 @@ public class RecordsGroupDaoImpl implements RecordsGroupDao {
 
 	@Override
 	public int insert(RecordsGroup record) {
-		return sqlSessionTemplate.insert("insert", record);
+		return sqlSessionTemplate.insert("insertGroup", record);
 	}
 
 	@Override
 	public int insertSelective(RecordsGroup record) {
-		return sqlSessionTemplate.insert("insertSelective", record);
+		return sqlSessionTemplate.insert("insertSelectiveGroup", record);
 	}
 
 	@Override
