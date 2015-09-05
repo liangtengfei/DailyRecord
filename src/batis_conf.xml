@@ -28,5 +28,8 @@
     </typeAliases>
 	<mappers>
 		<mapper resource="com/calf/daily/model/RecorderMapper.xml" />
+		<mapper resource="com/calf/daily/model/RecordsMapper.xml" />
+		<mapper resource="com/calf/daily/model/RecordsGroupMapper.xml" />
+		<mapper resource="com/calf/daily/model/RecordSysLogMapper.xml" />
 	</mappers>
 </configuration>

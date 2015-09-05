@@ -13,11 +13,17 @@
   <sql id="Base_Column_List" >
     ID, GROUPNAME, GROUPVISIBLE, GROUOWNER, GROUPTIME, GROUPDID, GROUPCOMM
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectGroupByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from RECORDSGROUP
     where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllRecordsGroup" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RECORDSGROUP
+    order by GROUPNAME
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from RECORDSGROUP

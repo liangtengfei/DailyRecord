@@ -54,7 +54,14 @@
     <!-- 对dataSource 数据源进行事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           p:dataSource-ref="jdbcDataSource"/>
-	
+	<!-- 切面配置 -->
+    <aop:aspectj-autoproxy />
+    <aop:config>
+		<aop:pointcut id="recordsServiceMethods" expression="execution(* com.calf.daily.dao.*.*(..))"/>
+		<!-- 在所有的pointcut中增加事务
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="userServiceMethods"/>
+         -->
+	</aop:config>
 	<!-- <bean id="recorderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.calf.daily.interf.RecorderMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>

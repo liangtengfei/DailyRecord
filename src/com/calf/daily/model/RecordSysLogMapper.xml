@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.calf.daily.interf.RecordSysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.calf.daily.model.RecordSysLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="LOGTIME" property="logtime" jdbcType="TIMESTAMP" />
+    <result column="LOGMETHOD" property="logmethod" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CONTENT, LOGTIME, LOGMETHOD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RECORDSYSLOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllRecordSysLogs" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RECORDSYSLOG
+    order by LOGTIME desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RECORDSYSLOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.calf.daily.model.RecordSysLog" >
+    insert into RECORDSYSLOG (ID, CONTENT, LOGTIME, 
+      LOGMETHOD)
+    values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{logtime,jdbcType=TIMESTAMP}, 
+      #{logmethod,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.calf.daily.model.RecordSysLog" >
+    insert into RECORDSYSLOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="logtime != null" >
+        LOGTIME,
+      </if>
+      <if test="logmethod != null" >
+        LOGMETHOD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logmethod != null" >
+        #{logmethod,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.calf.daily.model.RecordSysLog" >
+    update RECORDSYSLOG
+    <set >
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logmethod != null" >
+        LOGMETHOD = #{logmethod,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.calf.daily.model.RecordSysLog" >
+    update RECORDSYSLOG
+    set CONTENT = #{content,jdbcType=VARCHAR},
+      LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      LOGMETHOD = #{logmethod,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

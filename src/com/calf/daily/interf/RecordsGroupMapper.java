@@ -1,5 +1,7 @@
 package com.calf.daily.interf;
 
+import java.util.List;
+
 import com.calf.daily.model.RecordsGroup;
 
 public interface RecordsGroupMapper {
@@ -14,4 +16,6 @@ public interface RecordsGroupMapper {
     int updateByPrimaryKeySelective(RecordsGroup record);
 
     int updateByPrimaryKey(RecordsGroup record);
+    
+    List<RecordsGroup> getAllRecordsGroup();
 }

@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,19 +14,20 @@ import com.calf.daily.interf.RecorderMapper;
 import com.calf.daily.model.Recorder;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user.htm")
 @SessionAttributes({"username","result"})
 public class RecorderController {
-	private RecorderMapper recordService;
+	private RecorderMapper recorderService;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String toIndex(){
 		return "redirect:index.html";
 	}
+	
 	@RequestMapping(params="m=login", method = RequestMethod.POST)
 	@ResponseBody
 	public Recorder userLogin(HttpSession session, @RequestBody Recorder user){
-		Recorder r=recordService.selectByNamePass(user);
+		Recorder r=recorderService.selectByNamePass(user);
 		if(r==null){
 			return r;
 		}
@@ -36,18 +36,15 @@ public class RecorderController {
 	}
 	@RequestMapping(params="m=regist", method = RequestMethod.POST)
 	public @ResponseBody int userRegist(@RequestBody Recorder user){
-		int result=recordService.insertSelective(user);
+		int result=recorderService.insertSelective(user);
 		return result;
 	}
-	@RequestMapping(value="/record/{record_id}", method=RequestMethod.GET)
-	public String getRecordById(@PathVariable("record_id")String id){
-		return "";
-	}
-	public RecorderMapper getRecordService() {
-		return recordService;
+	
+	public RecorderMapper getRecorderService() {
+		return recorderService;
 	}
 	@Resource
-	public void setRecordService(RecorderMapper recordService) {
-		this.recordService = recordService;
+	public void setRecorderService(RecorderMapper recorderService) {
+		this.recorderService = recorderService;
 	}
 }

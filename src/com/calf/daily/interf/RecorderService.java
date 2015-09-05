@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.calf.daily.dao.RecorderDao;
 import com.calf.daily.model.Recorder;
 
-@Service("recordService")
-public class RecordService implements RecorderMapper {
+@Service("recorderService")
+public class RecorderService implements RecorderMapper {
 	
 	private RecorderDao recorderDao;
 	public RecorderDao getRecorderDao() {

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <!-- <link href="http://bootstrap.evget.com/dist/css/bootstrap-theme.min.css" rel="stylesheet"> -->
-<link href="/resource/css/index.css">
+<link href="/resource/css/index.css"  rel="stylesheet">
 <title>生活的意义--你每天都在干什么？你明天计划干什么？</title>
 <style type="text/css">
 <!-- 由于bootstrap.min.css会覆盖index的内容 所以 在这里单独写 -->
@@ -76,8 +76,8 @@
 	       	<li class="dropdown">
 	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能 <b class="caret"></b></a>
 	        	<ul class="dropdown-menu">
-		          <li><a href="#">新增</a></li>
-		          <li><a href="#">查看全部</a></li>
+		          <li><a href="addrecord.jsp">新增</a></li>
+		          <li><a href="recordslist.jsp">查看全部</a></li>
 		          <li class="divider"></li>
 		          <li><a href="#">我的计划</a></li>
 	        	</ul>

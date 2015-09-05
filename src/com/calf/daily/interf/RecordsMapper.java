@@ -1,5 +1,7 @@
 package com.calf.daily.interf;
 
+import java.util.List;
+
 import com.calf.daily.model.Records;
 
 public interface RecordsMapper {
@@ -14,4 +16,8 @@ public interface RecordsMapper {
     int updateByPrimaryKeySelective(Records record);
 
     int updateByPrimaryKey(Records record);
+    
+    List<Records> getAllRecords();
+    
+    List<Records> selectByKeywords(String recordTitle);
 }
