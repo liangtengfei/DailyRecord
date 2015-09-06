@@ -143,6 +143,7 @@ $(document).ready(function(){
               <li><a href="#">短信日记</a></li>
               <li><a href="#">微信日记</a></li>
               <li><a href="#">日记导出</a></li>
+              <li><a href="#">日记导入</a></li>
             </ul>
           </li>
        </ul>
